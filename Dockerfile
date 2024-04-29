@@ -1,11 +1,5 @@
-FROM rockylinux/rockylinux:8.5
-RUN echo 8.5 > /etc/yum/vars/releasever
-RUN for each in $(ls /etc/yum.repos.d); do \
-        cat /etc/yum.repos.d/$each; \
-        sed -i  /etc/yum.repos.d/$each -e "s,#baseurl=,baseurl=,"; \
-        sed -i  /etc/yum.repos.d/$each -e "/^mirrorlist=/d"; \
-        cat /etc/yum.repos.d/$each; \
-      done
+FROM almalinux:8.6
+RUN echo 8.6 > /etc/yum/vars/releasever
 RUN dnf update -y
 COPY init.sh /
 RUN chmod 755 /init.sh
